@@ -1,5 +1,7 @@
 import Fastify from "fastify";
 
+import { appController } from "./routes";
+
 import { Logger } from "./utils/logger";
 
 import { HttpStatusEnum } from "./enums/http-status";
@@ -16,12 +18,10 @@ app.addHook("onRequest", (request, response, done) => {
 	done();
 });
 
+app.register(appController);
+
 app.get("/", (_request, response) => {
 	response.send("Hello World");
-});
-
-app.post("/feedbacks", (request, response) => {
-	response.send("You're trying to create a feedback");
 });
 
 app.listen(PORT, () => {
