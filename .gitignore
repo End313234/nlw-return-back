@@ -3,3 +3,6 @@ dist
 
 # secret
 .env
+
+# package manager
+yarn-*.log
