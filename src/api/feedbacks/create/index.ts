@@ -19,11 +19,18 @@ export const createFeedbackService: RouteService = async (
 		prismaFeedbacksRepository,
 	);
 
-	await submitFeedbackUseCase.execute({
+	const possibleErrors = await submitFeedbackUseCase.execute({
 		type,
 		comment,
 		screenshot,
 	});
+	if (possibleErrors) {
+		response.code(HttpStatusEnum.BAD_REQUEST).send({
+			errors: possibleErrors,
+		});
+
+		return;
+	}
 
 	response.code(HttpStatusEnum.CREATED).send();
 };

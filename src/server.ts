@@ -10,10 +10,12 @@ const PORT = 8080;
 const app = Fastify();
 
 app.addHook("onRequest", (request, response, done) => {
-	if (!request.body && request.headers["content-type"] === "application/json") {
+	if (request.body && request.headers["content-type"] === "application/json") {
 		response.code(HttpStatusEnum.BAD_REQUEST).send({
 			message: "no body provided",
 		});
+	} else if (!request.body) {
+		request.body = {};
 	}
 	done();
 });
