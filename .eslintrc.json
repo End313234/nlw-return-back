@@ -3,5 +3,6 @@
 	"extends": [
 		"@techmmunity/eslint-config/common",
 		"@techmmunity/eslint-config/typescript"
-	]
+	],
+	"ignorePatterns": "*.config.ts"
 }

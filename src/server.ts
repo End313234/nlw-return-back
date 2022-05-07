@@ -1,6 +1,6 @@
 import Fastify from "fastify";
 
-import { appController } from "./routes";
+import { appController } from "./api";
 
 import { Logger } from "./utils/logger";
 
